@@ -3,358 +3,7 @@ local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 local window = DrRayLibrary:Load("DrRay", "Default")
 
 local tab = DrRayLibrary.newTab("scripts lawl", "9180622670")
-tab.newButton("launch", "this is will make you a rocket xD", function()
-   -- Place this script in a ServerScript or LocalScript in Roblox Studio
 
--- Variables
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-local launchForce = 100 -- How much force to apply for launching
-
--- Function to launch the player upwards
-local function launchPlayer()
-    -- Create a BodyVelocity instance
-    local bodyVelocity = Instance.new("BodyVelocity")
-    bodyVelocity.MaxForce = Vector3.new(100000, 100000, 100000) -- Ensure the force is applied
-    bodyVelocity.Velocity = Vector3.new(0, launchForce, 0) -- Apply force upwards
-    bodyVelocity.Parent = character:WaitForChild("HumanoidRootPart")
-    
-    -- Clean up the BodyVelocity after 0.5 seconds so it doesn't affect the player forever
-    game.Debris:AddItem(bodyVelocity, 0.5)
-end
-
--- Function to handle when the player touches the ground
-local function onGroundTouch()
-    humanoid.Health = 0 -- Kill the player by setting their health to 0
-end
-
--- Launch the player immediately
-launchPlayer()
-
--- Detect when the player touches the ground
-character:WaitForChild("HumanoidRootPart").Touched:Connect(function(hit)
-    -- You can modify this part if needed, e.g., checking if the hit part is the ground or a specific part
-    if hit and hit:IsA("BasePart") and hit.Position.Y < character.HumanoidRootPart.Position.Y then
-        onGroundTouch()
-    end
-end)
-end)
-tab.newButton("touch fling", "works only if collisons enabled game or hats used", function()
-  -- Touch fling gui
-
--- Gui to Lua (VIP VERSION)
--- Version: 6.9
-
--- Instances:
-
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local Frame_2 = Instance.new("Frame")
-local TextLabel = Instance.new("TextLabel")
-local TextButton = Instance.new("TextButton")
-
---Properties:
-
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-ScreenGui.ResetOnSpawn = false
-print("sub to DuplexScripts")
-
-Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
-Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Frame.BorderSizePixel = 0
-Frame.Position = UDim2.new(0.388539821, 0, 0.427821517, 0)
-Frame.Size = UDim2.new(0, 158, 0, 110)
-
-Frame_2.Parent = Frame
-Frame_2.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-Frame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Frame_2.BorderSizePixel = 0
-Frame_2.Size = UDim2.new(0, 158, 0, 25)
-
-TextLabel.Parent = Frame_2
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BackgroundTransparency = 1.000
-TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.BorderSizePixel = 0
-TextLabel.Position = UDim2.new(0.112792775, 0, -0.0151660154, 0)
-TextLabel.Size = UDim2.new(0, 121, 0, 26)
-TextLabel.Font = Enum.Font.Sarpanch
-TextLabel.Text = "Touch Fling"
-TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.TextSize = 25.000
-
-TextButton.Parent = Frame
-TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.BorderColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.BorderSizePixel = 0
-TextButton.Position = UDim2.new(0.113924049, 0, 0.418181807, 0)
-TextButton.Size = UDim2.new(0, 121, 0, 37)
-TextButton.Font = Enum.Font.SourceSansItalic
-TextButton.Text = "OFF"
-TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.TextSize = 20.000
-
--- Scripts:
-
-local function IIMAWH_fake_script() -- TextButton.LocalScript 
-    local script = Instance.new('LocalScript', TextButton)
-
-    local ReplicatedStorage = game:GetService("ReplicatedStorage")
-    local RunService = game:GetService("RunService")
-    local Players = game:GetService("Players")
-    
-    local toggleButton = script.Parent
-    local hiddenfling = false
-    local flingThread 
-    if not ReplicatedStorage:FindFirstChild("juisdfj0i32i0eidsuf0iok") then
-        local detection = Instance.new("Decal")
-        detection.Name = "juisdfj0i32i0eidsuf0iok"
-        detection.Parent = ReplicatedStorage
-    end
-    
-    local function fling()
-        local lp = Players.LocalPlayer
-        local c, hrp, vel, movel = nil, nil, nil, 0.1
-    
-        while hiddenfling do
-            RunService.Heartbeat:Wait()
-            c = lp.Character
-            hrp = c and c:FindFirstChild("HumanoidRootPart")
-    
-            if hrp then
-                vel = hrp.Velocity
-                hrp.Velocity = vel * 10000 + Vector3.new(0, 10000, 0)
-                RunService.RenderStepped:Wait()
-                hrp.Velocity = vel
-                RunService.Stepped:Wait()
-                hrp.Velocity = vel + Vector3.new(0, movel, 0)
-                movel = -movel
-            end
-        end
-    end
-    
-    toggleButton.MouseButton1Click:Connect(function()
-        hiddenfling = not hiddenfling
-        toggleButton.Text = hiddenfling and "ON" or "OFF"
-    
-        if hiddenfling then
-            flingThread = coroutine.create(fling)
-            coroutine.resume(flingThread)
-        else
-            hiddenfling = false
-        end
-    end)
-    
-end
-coroutine.wrap(IIMAWH_fake_script)()
-local function QCJQJL_fake_script() -- Frame.LocalScript 
-    local script = Instance.new('LocalScript', Frame)
-
-    script.Parent.Active = true
-    script.Parent.Draggable = true
-end
-coroutine.wrap(QCJQJL_fake_script)()
-end)
-
-tab.newButton("floating", "float FE!", function()
-     -- Place this script in a LocalScript inside StarterPlayerScripts
-
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local rootPart = character:WaitForChild("HumanoidRootPart")
-local humanoid = character:WaitForChild("Humanoid")
-
--- Create ScreenGui
-local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
-gui.Name = "FloatControlGui"
-
--- Create Main Frame (Draggable)
-local controlFrame = Instance.new("Frame", gui)
-controlFrame.Size = UDim2.new(0, 160, 0, 90)
-controlFrame.Position = UDim2.new(0.5, -80, 0.7, 0)
-controlFrame.BackgroundTransparency = 0.2
-controlFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-controlFrame.Active = true
-controlFrame.Draggable = true
-
--- Create Title Bar for dragging
-local titleBar = Instance.new("TextLabel", controlFrame)
-titleBar.Size = UDim2.new(1, 0, 0.3, 0)
-titleBar.Text = "Made by Mineogo"
-titleBar.TextColor3 = Color3.new(1, 1, 1)
-titleBar.BackgroundTransparency = 0.3
-titleBar.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-titleBar.Font = Enum.Font.SourceSans
-titleBar.TextSize = 16
-
--- Create Up Button
-local upButton = Instance.new("TextButton", controlFrame)
-upButton.Size = UDim2.new(0.3, 0, 0.7, 0)
-upButton.Position = UDim2.new(0, 0, 0.3, 0)
-upButton.Text = "⬆"
-upButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-
--- Create Down Button
-local downButton = Instance.new("TextButton", controlFrame)
-downButton.Size = UDim2.new(0.3, 0, 0.7, 0)
-downButton.Position = UDim2.new(0.7, 0, 0.3, 0)
-downButton.Text = "⬇"
-downButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-
--- Create Stop Button
-local stopButton = Instance.new("TextButton", controlFrame)
-stopButton.Size = UDim2.new(0.4, 0, 0.7, 0)
-stopButton.Position = UDim2.new(0.3, 0, 0.3, 0)
-stopButton.Text = "STOP"
-stopButton.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
-
--- Floating mechanics
-local floatForce = 5
-local bodyPosition
-
-local function createBodyPosition()
-    bodyPosition = Instance.new("BodyPosition")
-    bodyPosition.MaxForce = Vector3.new(0, math.huge, 0)
-    bodyPosition.Position = rootPart.Position
-    bodyPosition.Parent = rootPart
-end
-
-local function startFloating()
-    if not bodyPosition then
-        createBodyPosition()
-    end
-end
-
-local function stopFloating()
-    if bodyPosition then
-        bodyPosition:Destroy()
-        bodyPosition = nil
-    end
-end
-
--- Button Actions
-upButton.MouseButton1Down:Connect(function()
-    startFloating()
-    bodyPosition.Position = rootPart.Position + Vector3.new(0, floatForce, 0)
-end)
-
-downButton.MouseButton1Down:Connect(function()
-    startFloating()
-    bodyPosition.Position = rootPart.Position - Vector3.new(0, floatForce, 0)
-end)
-
-stopButton.MouseButton1Click:Connect(function()
-    stopFloating()
-end)
-
--- Reset when character respawns
-player.CharacterAdded:Connect(function(newCharacter)
-    character = newCharacter
-    rootPart = character:WaitForChild("HumanoidRootPart")
-    humanoid = character:WaitForChild("Humanoid")
-    stopFloating()
-end)
-
--- Keep hands down (Removed SetStateEnabled line to fix mobile jump button)
--- humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping, false) -- Removed to prevent interference
-end)
-
-tab.newToggle("Toggle", "Toggle! (prints the state)", true, function(toggleState)
-    if toggleState then
-        print("On")
-    else
-        print("Off")
-    end
-end)
-Tab:CreateToggle({
-    Name = "slick back",
-    Callback = function(Value)
-        local jumpConnection = nil
-        local originalWalkSpeed = 16
-        local humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
-        
-        if Value then
-            humanoid.WalkSpeed = 160  -- Set high walk speed
-            jumpConnection = game:GetService("UserInputService").JumpRequest:Connect(function()
-                humanoid:ChangeState("Jumping")
-            end)
-        else
-            humanoid.WalkSpeed = originalWalkSpeed
-            if jumpConnection then
-                jumpConnection:Disconnect()
-                jumpConnection = nil
-            end
-        end
-    end,
-})
-
--- Toggle for Speed and Infinite Jump
-tab.newToggle("Toggle", "Toggle! (prints the state)", true, function(toggleState)
-    local jumpConnection = nil
-    local originalWalkSpeed = 16
-    local humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
-    
-    if toggleState then
-        humanoid.WalkSpeed = 160  -- Set high walk speed
-        jumpConnection = game:GetService("UserInputService").JumpRequest:Connect(function()
-            humanoid:ChangeState("Jumping")
-        end)
-        print("On")
-    else
-        humanoid.WalkSpeed = originalWalkSpeed
-        if jumpConnection then
-            jumpConnection:Disconnect()
-            jumpConnection = nil
-        end
-        print("Off")
-    end
-end)
-
--- Toggle for Speed and Infinite Jump
-tab.newToggle("Toggle", "Toggle! (prints the state)", true, function(toggleState)
-    local jumpConnection = nil
-    local originalWalkSpeed = 16
-    local humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
-    
-    if toggleState then
-        humanoid.WalkSpeed = 160  -- Set high walk speed
-        jumpConnection = game:GetService("UserInputService").JumpRequest:Connect(function()
-            humanoid:ChangeState("Jumping")
-        end)
-        print("On")
-    else
-        humanoid.WalkSpeed = originalWalkSpeed
-        if jumpConnection then
-            jumpConnection:Disconnect()
-            jumpConnection = nil
-        end
-        print("Off")
-    end
-end)
--- Toggle for Speed and Infinite Jump
-tab.newToggle("Toggle", "Toggle! (prints the state)", true, function(toggleState)
-    local jumpConnection = nil
-    local originalWalkSpeed = 16
-    local humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
-    
-    if toggleState then
-        humanoid.WalkSpeed = 160  -- Set high walk speed
-        jumpConnection = game:GetService("UserInputService").JumpRequest:Connect(function()
-            humanoid:ChangeState("Jumping")
-        end)
-        print("On")
-    else
-        humanoid.WalkSpeed = originalWalkSpeed
-        if jumpConnection then
-            jumpConnection:Disconnect()
-            jumpConnection = nil
-        end
-        print("Off")
-    end
-end)
 
 -- Floating GUI with Controls
 Tab:CreateButton({
@@ -793,3 +442,356 @@ while true do
     end
 end
 end)
+
+tab.newButton("launch", "this is will make you a rocket xD", function()
+   -- Place this script in a ServerScript or LocalScript in Roblox Studio
+
+-- Variables
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local launchForce = 100 -- How much force to apply for launching
+
+-- Function to launch the player upwards
+local function launchPlayer()
+    -- Create a BodyVelocity instance
+    local bodyVelocity = Instance.new("BodyVelocity")
+    bodyVelocity.MaxForce = Vector3.new(100000, 100000, 100000) -- Ensure the force is applied
+    bodyVelocity.Velocity = Vector3.new(0, launchForce, 0) -- Apply force upwards
+    bodyVelocity.Parent = character:WaitForChild("HumanoidRootPart")
+    
+    -- Clean up the BodyVelocity after 0.5 seconds so it doesn't affect the player forever
+    game.Debris:AddItem(bodyVelocity, 0.5)
+end
+
+-- Function to handle when the player touches the ground
+local function onGroundTouch()
+    humanoid.Health = 0 -- Kill the player by setting their health to 0
+end
+
+-- Launch the player immediately
+launchPlayer()
+
+-- Detect when the player touches the ground
+character:WaitForChild("HumanoidRootPart").Touched:Connect(function(hit)
+    -- You can modify this part if needed, e.g., checking if the hit part is the ground or a specific part
+    if hit and hit:IsA("BasePart") and hit.Position.Y < character.HumanoidRootPart.Position.Y then
+        onGroundTouch()
+    end
+end)
+end)
+tab.newButton("touch fling", "works only if collisons enabled game or hats used", function()
+  -- Touch fling gui
+
+-- Gui to Lua (VIP VERSION)
+-- Version: 6.9
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Frame_2 = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.ResetOnSpawn = false
+print("sub to DuplexScripts")
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.388539821, 0, 0.427821517, 0)
+Frame.Size = UDim2.new(0, 158, 0, 110)
+
+Frame_2.Parent = Frame
+Frame_2.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+Frame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame_2.BorderSizePixel = 0
+Frame_2.Size = UDim2.new(0, 158, 0, 25)
+
+TextLabel.Parent = Frame_2
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.112792775, 0, -0.0151660154, 0)
+TextLabel.Size = UDim2.new(0, 121, 0, 26)
+TextLabel.Font = Enum.Font.Sarpanch
+TextLabel.Text = "Touch Fling"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 25.000
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BorderColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.113924049, 0, 0.418181807, 0)
+TextButton.Size = UDim2.new(0, 121, 0, 37)
+TextButton.Font = Enum.Font.SourceSansItalic
+TextButton.Text = "OFF"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 20.000
+
+-- Scripts:
+
+local function IIMAWH_fake_script() -- TextButton.LocalScript 
+    local script = Instance.new('LocalScript', TextButton)
+
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+    local RunService = game:GetService("RunService")
+    local Players = game:GetService("Players")
+    
+    local toggleButton = script.Parent
+    local hiddenfling = false
+    local flingThread 
+    if not ReplicatedStorage:FindFirstChild("juisdfj0i32i0eidsuf0iok") then
+        local detection = Instance.new("Decal")
+        detection.Name = "juisdfj0i32i0eidsuf0iok"
+        detection.Parent = ReplicatedStorage
+    end
+    
+    local function fling()
+        local lp = Players.LocalPlayer
+        local c, hrp, vel, movel = nil, nil, nil, 0.1
+    
+        while hiddenfling do
+            RunService.Heartbeat:Wait()
+            c = lp.Character
+            hrp = c and c:FindFirstChild("HumanoidRootPart")
+    
+            if hrp then
+                vel = hrp.Velocity
+                hrp.Velocity = vel * 10000 + Vector3.new(0, 10000, 0)
+                RunService.RenderStepped:Wait()
+                hrp.Velocity = vel
+                RunService.Stepped:Wait()
+                hrp.Velocity = vel + Vector3.new(0, movel, 0)
+                movel = -movel
+            end
+        end
+    end
+    
+    toggleButton.MouseButton1Click:Connect(function()
+        hiddenfling = not hiddenfling
+        toggleButton.Text = hiddenfling and "ON" or "OFF"
+    
+        if hiddenfling then
+            flingThread = coroutine.create(fling)
+            coroutine.resume(flingThread)
+        else
+            hiddenfling = false
+        end
+    end)
+    
+end
+coroutine.wrap(IIMAWH_fake_script)()
+local function QCJQJL_fake_script() -- Frame.LocalScript 
+    local script = Instance.new('LocalScript', Frame)
+
+    script.Parent.Active = true
+    script.Parent.Draggable = true
+end
+coroutine.wrap(QCJQJL_fake_script)()
+end)
+
+tab.newButton("floating", "float FE!", function()
+     -- Place this script in a LocalScript inside StarterPlayerScripts
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local rootPart = character:WaitForChild("HumanoidRootPart")
+local humanoid = character:WaitForChild("Humanoid")
+
+-- Create ScreenGui
+local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+gui.Name = "FloatControlGui"
+
+-- Create Main Frame (Draggable)
+local controlFrame = Instance.new("Frame", gui)
+controlFrame.Size = UDim2.new(0, 160, 0, 90)
+controlFrame.Position = UDim2.new(0.5, -80, 0.7, 0)
+controlFrame.BackgroundTransparency = 0.2
+controlFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+controlFrame.Active = true
+controlFrame.Draggable = true
+
+-- Create Title Bar for dragging
+local titleBar = Instance.new("TextLabel", controlFrame)
+titleBar.Size = UDim2.new(1, 0, 0.3, 0)
+titleBar.Text = "Made by Mineogo"
+titleBar.TextColor3 = Color3.new(1, 1, 1)
+titleBar.BackgroundTransparency = 0.3
+titleBar.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+titleBar.Font = Enum.Font.SourceSans
+titleBar.TextSize = 16
+
+-- Create Up Button
+local upButton = Instance.new("TextButton", controlFrame)
+upButton.Size = UDim2.new(0.3, 0, 0.7, 0)
+upButton.Position = UDim2.new(0, 0, 0.3, 0)
+upButton.Text = "⬆"
+upButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+
+-- Create Down Button
+local downButton = Instance.new("TextButton", controlFrame)
+downButton.Size = UDim2.new(0.3, 0, 0.7, 0)
+downButton.Position = UDim2.new(0.7, 0, 0.3, 0)
+downButton.Text = "⬇"
+downButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+
+-- Create Stop Button
+local stopButton = Instance.new("TextButton", controlFrame)
+stopButton.Size = UDim2.new(0.4, 0, 0.7, 0)
+stopButton.Position = UDim2.new(0.3, 0, 0.3, 0)
+stopButton.Text = "STOP"
+stopButton.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+
+-- Floating mechanics
+local floatForce = 5
+local bodyPosition
+
+local function createBodyPosition()
+    bodyPosition = Instance.new("BodyPosition")
+    bodyPosition.MaxForce = Vector3.new(0, math.huge, 0)
+    bodyPosition.Position = rootPart.Position
+    bodyPosition.Parent = rootPart
+end
+
+local function startFloating()
+    if not bodyPosition then
+        createBodyPosition()
+    end
+end
+
+local function stopFloating()
+    if bodyPosition then
+        bodyPosition:Destroy()
+        bodyPosition = nil
+    end
+end
+
+-- Button Actions
+upButton.MouseButton1Down:Connect(function()
+    startFloating()
+    bodyPosition.Position = rootPart.Position + Vector3.new(0, floatForce, 0)
+end)
+
+downButton.MouseButton1Down:Connect(function()
+    startFloating()
+    bodyPosition.Position = rootPart.Position - Vector3.new(0, floatForce, 0)
+end)
+
+stopButton.MouseButton1Click:Connect(function()
+    stopFloating()
+end)
+
+-- Reset when character respawns
+player.CharacterAdded:Connect(function(newCharacter)
+    character = newCharacter
+    rootPart = character:WaitForChild("HumanoidRootPart")
+    humanoid = character:WaitForChild("Humanoid")
+    stopFloating()
+end)
+
+-- Keep hands down (Removed SetStateEnabled line to fix mobile jump button)
+-- humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping, false) -- Removed to prevent interference
+end)
+
+tab.newToggle("Toggle", "Toggle! (prints the state)", true, function(toggleState)
+    if toggleState then
+        print("On")
+    else
+        print("Off")
+    end
+end)
+Tab:CreateToggle({
+    Name = "slick back",
+    Callback = function(Value)
+        local jumpConnection = nil
+        local originalWalkSpeed = 16
+        local humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+        
+        if Value then
+            humanoid.WalkSpeed = 160  -- Set high walk speed
+            jumpConnection = game:GetService("UserInputService").JumpRequest:Connect(function()
+                humanoid:ChangeState("Jumping")
+            end)
+        else
+            humanoid.WalkSpeed = originalWalkSpeed
+            if jumpConnection then
+                jumpConnection:Disconnect()
+                jumpConnection = nil
+            end
+        end
+    end,
+})
+
+-- Toggle for Speed and Infinite Jump
+tab.newToggle("Toggle", "Toggle! (prints the state)", true, function(toggleState)
+    local jumpConnection = nil
+    local originalWalkSpeed = 16
+    local humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+    
+    if toggleState then
+        humanoid.WalkSpeed = 160  -- Set high walk speed
+        jumpConnection = game:GetService("UserInputService").JumpRequest:Connect(function()
+            humanoid:ChangeState("Jumping")
+        end)
+        print("On")
+    else
+        humanoid.WalkSpeed = originalWalkSpeed
+        if jumpConnection then
+            jumpConnection:Disconnect()
+            jumpConnection = nil
+        end
+        print("Off")
+    end
+end)
+
+-- Toggle for Speed and Infinite Jump
+tab.newToggle("Toggle", "Toggle! (prints the state)", true, function(toggleState)
+    local jumpConnection = nil
+    local originalWalkSpeed = 16
+    local humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+    
+    if toggleState then
+        humanoid.WalkSpeed = 160  -- Set high walk speed
+        jumpConnection = game:GetService("UserInputService").JumpRequest:Connect(function()
+            humanoid:ChangeState("Jumping")
+        end)
+        print("On")
+    else
+        humanoid.WalkSpeed = originalWalkSpeed
+        if jumpConnection then
+            jumpConnection:Disconnect()
+            jumpConnection = nil
+        end
+        print("Off")
+    end
+end)
+-- Toggle for Speed and Infinite Jump
+tab.newToggle("Toggle", "Toggle! (prints the state)", true, function(toggleState)
+    local jumpConnection = nil
+    local originalWalkSpeed = 16
+    local humanoid = game.Players.LocalPlayer.Character:WaitForChild("Humanoid")
+    
+    if toggleState then
+        humanoid.WalkSpeed = 160  -- Set high walk speed
+        jumpConnection = game:GetService("UserInputService").JumpRequest:Connect(function()
+            humanoid:ChangeState("Jumping")
+        end)
+        print("On")
+    else
+        humanoid.WalkSpeed = originalWalkSpeed
+        if jumpConnection then
+            jumpConnection:Disconnect()
+            jumpConnection = nil
+        end
+        print("Off")
+    end
+end) 
